@@ -18,9 +18,12 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Build & Push Docker Image
+      - name: Authenticate Docker with Artifact Registry
         run: |
           gcloud auth configure-docker asia-southeast2-docker.pkg.dev
+
+      - name: Build & Push Docker Image
+        run: |
           docker build -t asia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/golang-api/backend:latest -f golang-api/Dockerfile .
           docker push asia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/golang-api/backend:latest
 
