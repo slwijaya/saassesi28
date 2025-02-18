@@ -31,13 +31,15 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.GCP_INSTANCE_IP_FE }} >> ~/.ssh/known_hosts
 
-      - name: Sync Frontend Files to Compute Engine
+      - name: Fix Permissions on Compute Engine
         run: |
           gcloud compute ssh ci-cd-saasfrontend --zone=asia-southeast2-a --command "
-          sudo rm -rf /var/www/html/* &&
           sudo mkdir -p /var/www/html &&
-          exit"
+          sudo chown -R \$USER:\$USER /var/www/html &&
+          sudo chmod -R 755 /var/www/html"
 
+      - name: Sync Frontend Files to Compute Engine
+        run: |
           gcloud compute scp --recurse landingpages/* ci-cd-saasfrontend:/var/www/html --zone=asia-southeast2-a
 
       - name: Restart Nginx to Apply Changes
