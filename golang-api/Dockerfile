@@ -10,10 +10,16 @@ ENV GO111MODULE=on \
 # Buat working directory dalam container
 WORKDIR /app
 
-# Copy semua file dari direktori lokal ke container
+# Copy go.mod dan go.sum terlebih dahulu untuk caching dependency
+COPY go.mod go.sum ./
+
+# Unduh semua dependency sebelum menyalin kode sumber
+RUN go mod download
+
+# Sekarang copy seluruh kode ke dalam container
 COPY . .
 
-# Download dependencies
+# Pastikan dependency tetap bersih
 RUN go mod tidy
 
 # Compile aplikasi
