@@ -1,0 +1,45 @@
+{"level":"info","msg":"Server running on http://localhost:8080","time":"2025-02-06T10:20:28+07:00"}
+{"level":"info","msg":"Received request for RegisterHandler","time":"2025-02-06T10:21:24+07:00"}
+{"level":"info","msg":"Hashing password for new user: trialuser22@example.com","time":"2025-02-06T10:21:24+07:00"}
+{"level":"info","msg":"Inserting new user into database: trialuser22@example.com","time":"2025-02-06T10:21:24+07:00"}
+{"level":"info","msg":"Generating JWT token for new user: trialuser22@example.com","time":"2025-02-06T10:21:24+07:00"}
+{"level":"info","msg":"User registered successfully: trialuser22@example.com","time":"2025-02-06T10:21:24+07:00"}
+{"level":"info","msg":"Server running on http://localhost:8080","time":"2025-02-06T10:28:24+07:00"}
+{"level":"info","msg":"Received request for LoginHandler","time":"2025-02-06T10:31:10+07:00"}
+{"level":"info","msg":"Fetching user from database: trialuser22@example.com","time":"2025-02-06T10:31:10+07:00"}
+{"level":"info","msg":"Verifying password for user: trialuser22@example.com","time":"2025-02-06T10:31:10+07:00"}
+{"level":"info","msg":"Generating JWT token for user: trialuser22@example.com","time":"2025-02-06T10:31:10+07:00"}
+{"level":"info","msg":"User logged in successfully: trialuser22@example.com","time":"2025-02-06T10:31:10+07:00"}
+{"level":"info","msg":"Search request received with query: ","time":"2025-02-06T10:33:57+07:00"}
+{"level":"error","msg":"Database error on search: pq: relation \"products\" does not exist","time":"2025-02-06T10:33:57+07:00"}
+{"level":"info","msg":"Search request received with query: ","time":"2025-02-06T10:37:19+07:00"}
+{"level":"error","msg":"Database error on search: pq: relation \"products\" does not exist","time":"2025-02-06T10:37:19+07:00"}
+{"level":"info","msg":"Server running on http://localhost:8080","time":"2025-02-06T10:47:45+07:00"}
+{"level":"info","msg":"Server running on http://localhost:8080","time":"2025-02-06T12:09:52+07:00"}
+{"level":"info","msg":"Received request for RegisterHandler","time":"2025-02-06T12:10:14+07:00"}
+{"level":"info","msg":"Hashing password for new user: trialuser23@example.com","time":"2025-02-06T12:10:14+07:00"}
+{"level":"info","msg":"Inserting new user into database: trialuser23@example.com","time":"2025-02-06T12:10:15+07:00"}
+{"level":"info","msg":"Generating JWT token for new user: trialuser23@example.com","time":"2025-02-06T12:10:15+07:00"}
+{"level":"info","msg":"User registered successfully: trialuser23@example.com","time":"2025-02-06T12:10:15+07:00"}
+{"level":"info","msg":"Received request for LoginHandler","time":"2025-02-06T12:10:27+07:00"}
+{"level":"info","msg":"Fetching user from database: trialuser23@example.com","time":"2025-02-06T12:10:27+07:00"}
+{"level":"info","msg":"Verifying password for user: trialuser23@example.com","time":"2025-02-06T12:10:27+07:00"}
+{"level":"info","msg":"Generating JWT token for user: trialuser23@example.com","time":"2025-02-06T12:10:27+07:00"}
+{"level":"info","msg":"User logged in successfully: trialuser23@example.com","time":"2025-02-06T12:10:27+07:00"}
+{"level":"info","msg":"Server running on http://localhost:8080","time":"2025-02-06T12:16:57+07:00"}
+{"level":"info","msg":"Received request for RegisterHandler","time":"2025-02-06T12:17:07+07:00"}
+{"level":"info","msg":"Hashing password for new user: trialuser24@example.com","time":"2025-02-06T12:17:07+07:00"}
+{"level":"info","msg":"Inserting new user into database: trialuser24@example.com","time":"2025-02-06T12:17:07+07:00"}
+{"level":"info","msg":"Generating JWT token for new user: trialuser24@example.com","time":"2025-02-06T12:17:07+07:00"}
+{"level":"info","msg":"User registered successfully: trialuser24@example.com","time":"2025-02-06T12:17:07+07:00"}
+{"level":"info","msg":"Received request for LoginHandler","time":"2025-02-06T12:17:15+07:00"}
+{"level":"info","msg":"Fetching user from database: trialuser24@example.com","time":"2025-02-06T12:17:15+07:00"}
+{"level":"info","msg":"Verifying password for user: trialuser24@example.com","time":"2025-02-06T12:17:15+07:00"}
+{"level":"info","msg":"Generating JWT token for user: trialuser24@example.com","time":"2025-02-06T12:17:15+07:00"}
+{"level":"info","msg":"User logged in successfully: trialuser24@example.com","time":"2025-02-06T12:17:15+07:00"}
+{"level":"info","msg":"Server running on http://localhost:8080","time":"2025-02-12T15:21:56+07:00"}
+{"level":"info","msg":"Received request for SearchProductsHandler","time":"2025-02-12T15:22:13+07:00"}
+{"level":"info","msg":"Received request for SearchProductsHandler","time":"2025-02-12T15:22:14+07:00"}
+{"level":"info","msg":"Received request for SearchProductsHandler","time":"2025-02-12T15:22:17+07:00"}
+{"level":"info","msg":"Server running on http://localhost:8080","time":"2025-02-12T15:24:22+07:00"}
+{"level":"info","msg":"Server running on http://localhost:8080","time":"2025-02-13T11:44:31+07:00"}

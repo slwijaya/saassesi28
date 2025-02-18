@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riset Produk</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">Riset Produk</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Marketplace</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">SEO Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Main Dashboard Layout -->
+        <div class="container mt-4">
+            <div class="row">
+                <!-- Sidebar (Left) -->
+                <aside class="col-md-3">
+                    <div class="bg-white p-3 shadow-sm rounded">
+                        <h5>Brand Features </h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link" href="#">Search Product</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Top 10 Products</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Rekomendasi Product</a></li>
+                        </ul>
+                    </div>
+                </aside>
+                
+       <!-- Main Content (Right) -->
+            <section class="col-md-9">
+                <!-- Search Bar -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4>Riset Produk</h4>
+                    <div class="input-group w-50">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Cari produk..." onkeyup="searchProduct()">
+                        <button class="btn btn-primary" onclick="searchProduct()">Search</button>
+                    </div>
+                </div>
+
+                <!-- Product Terkait (Product Cards) -->
+                <div class="bg-white p-3 shadow-sm rounded mb-3">
+                    <h5>Produk Terkait</h5>
+                    <div class="row row-cols-2 row-cols-md-4 g-3" id="productCards">
+                        <!-- Produk Card akan dimuat oleh JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- JavaScript for Dynamic Data -->
+    <script>
+        const products = [
+            { name: "Baju Gamis Elegan", price: "Rp 150.000", sold: "1.200 Terjual", image: "https://spechtprop.com/wp-content/uploads/2016/05/placeholder.png" },
+            { name: "Hijab Premium", price: "Rp 50.000", sold: "850 Terjual", image: "https://spechtprop.com/wp-content/uploads/2016/05/placeholder.png" },
+            { name: "Setelan Muslimah", price: "Rp 200.000", sold: "1.500 Terjual", image: "https://spechtprop.com/wp-content/uploads/2016/05/placeholder.png" },
+            { name: "Baju Kurung", price: "Rp 180.000", sold: "600 Terjual", image: "https://spechtprop.com/wp-content/uploads/2016/05/placeholder.png" },
+            { name: "Kebaya Modern", price: "Rp 250.000", sold: "2.000 Terjual", image: "https://spechtprop.com/wp-content/uploads/2016/05/placeholder.png" },
+            { name: "Dress Muslimah", price: "Rp 300.000", sold: "980 Terjual", image: "https://spechtprop.com/wp-content/uploads/2016/05/placeholder.png" },
+            { name: "Outer Muslimah", price: "Rp 175.000", sold: "1.100 Terjual", image: "https://spechtprop.com/wp-content/uploads/2016/05/placeholder.png" },
+            { name: "Tunik Modern", price: "Rp 220.000", sold: "750 Terjual", image: "https://spechtprop.com/wp-content/uploads/2016/05/placeholder.png" }
+        ];
+
+        function loadProductCards() {
+            const productCards = document.getElementById("productCards");
+            productCards.innerHTML = "";
+
+            products.forEach(product => {
+                const card = `
+                    <div class="col product-card">
+                        <div class="card h-100">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                            <div class="card-body">
+                                <h6 class="card-title">${product.name}</h6>
+                                <p class="card-text">${product.price}</p>
+                                <small class="text-muted">${product.sold}</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productCards.innerHTML += card;
+            });
+        }
+
+        function searchProduct() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            document.querySelectorAll(".product-card").forEach(card => {
+                const title = card.querySelector(".card-title").innerText.toLowerCase();
+                card.style.display = title.includes(query) ? "block" : "none";
+            });
+        }
+
+        loadProductCards();
+    </script>
+</body>
+</html>
+
