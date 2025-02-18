@@ -1,0 +1,33 @@
+name: Deploy Frontend to GCP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-fe:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Sync Frontend Files to Compute Engine
+        run: |
+          gcloud compute ssh ci-cd-saasfrontend --zone=asia-southeast2-a --command "
+          sudo rm -rf /var/www/html/* &&
+          exit
+          "
+          gcloud compute scp -r ./landingpages/* ci-cd-saasfrontend:/var/www/html --zone=asia-southeast2
+
+      - name: Restart Nginx to Apply Changes
+        run: |
+          gcloud compute ssh ci-cd-saasfrontend --zone=asia-southeast2-a --command "
+          sudo systemctl restart nginx
+          "

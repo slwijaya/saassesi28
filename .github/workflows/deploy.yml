@@ -1,0 +1,34 @@
+name: Deploy Backend to GCP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Build & Push Docker Image
+        run: |
+          gcloud auth configure-docker asia-southeast2-docker.pkg.dev
+          docker build -t asia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/golang-api/backend:latest -f golang-api/Dockerfile .
+          docker push asia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/golang-api/backend:latest
+
+      - name: Deploy Backend on Compute Engine
+        run: |
+          gcloud compute ssh ci-cd-saasbackend --zone=asia-southeast2-a --command "
+          docker pull asia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/golang-api/backend:latest &&
+          docker stop backend || true &&
+          docker rm backend || true &&
+          docker run -d --name backend -p 8080:8080 --env-file .env asia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/golang-api/backend:latest
+          "
