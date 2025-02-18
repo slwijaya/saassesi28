@@ -1,5 +1,5 @@
 # Gunakan base image untuk Golang
-FROM golang:1.21.1 AS builder
+FROM golang:1.21.1 as builder
 
 # Set environment variable
 ENV GO111MODULE=on \
@@ -10,19 +10,14 @@ ENV GO111MODULE=on \
 # Buat working directory dalam container
 WORKDIR /app
 
-# Copy go.mod dan go.sum terlebih dahulu
+# Copy go.mod dan go.sum terlebih dahulu untuk caching dependency
 COPY go.mod go.sum ./
-
-# Unduh semua dependency sebelum menyalin kode sumber
 RUN go mod download
 
 # Copy semua file dari direktori lokal ke dalam container
 COPY . .
 
-# Pastikan go.mod dan go.sum sudah di dalam direktori
-RUN ls -la /app
-
-# Download dependencies
+# Unduh kembali dependency jika ada perubahan
 RUN go mod tidy
 
 # Compile aplikasi
@@ -37,7 +32,7 @@ WORKDIR /root/
 # Copy binary dari tahap build ke stage runtime
 COPY --from=builder /app/go-saas-api .
 
-# Expose port 8080 untuk HTTP
+# Expose port yang digunakan aplikasi
 EXPOSE 8080
 
 # Jalankan aplikasi
