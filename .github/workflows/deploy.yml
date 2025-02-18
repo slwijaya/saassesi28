@@ -27,10 +27,10 @@ jobs:
       - name: Deploy Backend on Compute Engine
         run: |
           gcloud compute ssh ci-cd-saasbackend --zone=asia-southeast2-a --command "
-          docker stop backend || true &&
-          docker rm backend || true &&
-          docker pull asia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/golang-api/backend:latest &&
-          docker run -d --name backend -p 8080:8080 \
+          sudo docker stop backend || true &&
+          sudo docker rm backend || true &&
+          sudo docker pull asia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/golang-api/backend:latest &&
+          sudo docker run -d --name backend -p 8080:8080 \
             -e DB_HOST=${{ secrets.DB_HOST }} \
             -e DB_USER=${{ secrets.DB_USER }} \
             -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
